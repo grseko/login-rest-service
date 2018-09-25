@@ -1,8 +1,8 @@
-package com.grseko.services.login;
+package com.grseko.services.user;
 
 import static org.springframework.web.bind.annotation.RequestMethod.POST;
 
-import com.grseko.db.UserService;
+import com.grseko.db.UserFacade;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -10,16 +10,16 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class UserRestController {
 
-  private final UserService userService;
+  private final UserFacade userFacade;
 
   @Autowired
-  public UserRestController(UserService userService) {
-    this.userService = userService;
+  public UserRestController(UserFacade userFacade) {
+    this.userFacade = userFacade;
   }
 
   @RequestMapping(value = "/login", method = POST)
   public String login() {
     System.out.println("'/login' endpoint called!");
-    return "Here's a user for you: " + userService.getUser("admin");
+    return "Here's a user for you: " + userFacade.getUser("admin");
   }
 }

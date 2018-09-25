@@ -1,8 +1,8 @@
 package com.grseko.db;
 
-import com.grseko.services.login.User;
+import com.grseko.model.User;
 
-public interface UserService {
+public interface UserFacade {
 
   User getUser(String username);
 

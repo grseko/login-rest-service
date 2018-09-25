@@ -1,6 +1,6 @@
 package com.grseko;
 
-import com.grseko.db.UserService;
+import com.grseko.db.UserFacade;
 import com.grseko.db.mongo.MongoUserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
@@ -14,7 +14,7 @@ public class Application implements CommandLineRunner {
   private MongoUserRepository repository;
 
   @Autowired
-  private UserService service;
+  private UserFacade service;
 
   public static void main(String[] args) {
     SpringApplication.run(Application.class, args);
@@ -27,6 +27,6 @@ public class Application implements CommandLineRunner {
     System.out.println("Inserting admin into database");
     service.createUser("admin", "hunter2");
 
-    System.out.println("UserService.getUser: " + service.getUser("admin"));
+    System.out.println("UserFacade.getUser: " + service.getUser("admin"));
   }
 }

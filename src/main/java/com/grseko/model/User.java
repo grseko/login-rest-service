@@ -1,4 +1,4 @@
-package com.grseko.services.login;
+package com.grseko.model;
 
 public class User {
 

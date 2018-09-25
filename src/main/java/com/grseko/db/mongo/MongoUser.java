@@ -1,9 +1,9 @@
 package com.grseko.db.mongo;
 
-import com.grseko.services.login.User;
+import com.grseko.model.User;
 import org.springframework.data.annotation.Id;
 
-public class MongoUser extends User {
+class MongoUser extends User {
 
   @Id
   private String id;

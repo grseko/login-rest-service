@@ -1,17 +1,17 @@
 package com.grseko.db.mongo;
 
-import com.grseko.db.UserService;
-import com.grseko.services.login.User;
+import com.grseko.db.UserFacade;
+import com.grseko.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Repository;
 
-@Service
-public class MongoUserService implements UserService {
+@Repository
+public class MongoUserFacade implements UserFacade {
 
   private final MongoUserRepository userRepository;
 
   @Autowired
-  public MongoUserService(MongoUserRepository userRepository) {
+  public MongoUserFacade(MongoUserRepository userRepository) {
     this.userRepository = userRepository;
   }
 
