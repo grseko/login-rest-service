@@ -1,33 +1,32 @@
 package com.grseko;
 
-import java.util.Arrays;
+import com.grseko.db.UserService;
+import com.grseko.db.mongo.MongoUserRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.context.ApplicationContext;
-import org.springframework.context.annotation.Bean;
 
 @SpringBootApplication
-public class Application {
+public class Application implements CommandLineRunner {
+
+  @Autowired
+  private MongoUserRepository repository;
+
+  @Autowired
+  private UserService service;
 
   public static void main(String[] args) {
     SpringApplication.run(Application.class, args);
   }
 
-  @Bean
-  public CommandLineRunner commandLineRunner(ApplicationContext context) {
+  @Override
+  public void run(String... args) throws Exception {
+    repository.deleteAll();
 
-    return args -> {
+    System.out.println("Inserting admin into database");
+    service.createUser("admin", "hunter2");
 
-      System.out.println("Let's inspect the beans provided by Spring Boot:");
-
-      String[] beanNames = context.getBeanDefinitionNames();
-      Arrays.sort(beanNames);
-
-      for (String beanName : beanNames) {
-        System.out.println(beanName);
-      }
-    };
-
+    System.out.println("UserService.getUser: " + service.getUser("admin"));
   }
 }
