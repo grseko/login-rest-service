@@ -10,6 +10,9 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @SpringBootApplication
 public class Application implements CommandLineRunner {
 
+  // TODO Separate DB, business, and REST layers into separate modules entirely to prevent circular dependencies.
+  // TODO Connect the modules through services
+
   @Autowired
   private MongoUserRepository repository;
 

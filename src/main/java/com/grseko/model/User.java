@@ -3,7 +3,7 @@ package com.grseko.model;
 public class User {
 
   private String username;
-  private String password;
+  private String password; // TODO Don't store the password here - add authenticate(String password) method for that
 
   public User(String username, String password) {
     this.username = username;
