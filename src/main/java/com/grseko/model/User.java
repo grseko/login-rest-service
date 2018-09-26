@@ -1,9 +1,14 @@
 package com.grseko.model;
 
+/**
+ * Business entity
+ */
 public class User {
 
   private String username;
-  private String password; // TODO Don't store the password here - add authenticate(String password) method for that
+  private String password; // TODO Further development options - salt and hash this guy before storage!
+
+  public User() {}
 
   public User(String username, String password) {
     this.username = username;
@@ -29,7 +34,7 @@ public class User {
   @Override
   public String toString() {
     return "User{" +
-        ", username='" + this.username + '\'' +
+        "username='" + this.username + '\'' +
         ", password='" + this.password + '\'' +
         '}';
   }

@@ -3,7 +3,7 @@ package com.grseko.db.mongo;
 import com.grseko.model.User;
 import org.springframework.data.annotation.Id;
 
-class MongoUser extends User { // TODO This is a DAO, the naming should reflect that
+class MongoUser extends User { // TODO Does this even need to exist? Why not just give 'User' an id?
 
   @Id
   private String id;

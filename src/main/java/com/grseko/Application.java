@@ -2,10 +2,12 @@ package com.grseko;
 
 import com.grseko.db.UserFacade;
 import com.grseko.db.mongo.MongoUserRepository;
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.Bean;
 
 @SpringBootApplication
 public class Application implements CommandLineRunner {
@@ -14,10 +16,10 @@ public class Application implements CommandLineRunner {
   // TODO Connect the modules through services
 
   @Autowired
-  private MongoUserRepository repository;
+  private MongoUserRepository userRepository;
 
   @Autowired
-  private UserFacade service;
+  private UserFacade userFacade;
 
   public static void main(String[] args) {
     SpringApplication.run(Application.class, args);
@@ -25,11 +27,18 @@ public class Application implements CommandLineRunner {
 
   @Override
   public void run(String... args) throws Exception {
-    repository.deleteAll();
+    userRepository.deleteAll();
 
     System.out.println("Inserting admin into database");
-    service.createUser("admin", "hunter2");
+    userFacade.createUser("admin", "hunter2");
 
-    System.out.println("UserFacade.getUser: " + service.getUser("admin"));
+    System.out.println("UserFacade.getUser: " + userFacade.getUser("admin"));
+  }
+
+  // Beans
+
+  @Bean
+  public ModelMapper modelMapper() {
+    return new ModelMapper();
   }
 }

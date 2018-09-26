@@ -1,13 +1,17 @@
-package com.grseko.services.user;
+package com.grseko.rest;
 
 import java.io.Serializable;
 
-public class UserDTO implements Serializable { // TODO Create a UserService for validation and UserDAOHelper for transformation
+public class UserDto implements
+    Serializable {
 
   private String username;
   private String password;
 
-  public UserDTO(String username, String password) {
+  public UserDto() {
+  }
+
+  public UserDto(String username, String password) {
     this.username = username;
     this.password = password;
   }
@@ -28,4 +32,11 @@ public class UserDTO implements Serializable { // TODO Create a UserService for 
     this.password = password;
   }
 
+  @Override
+  public String toString() {
+    return "User{" +
+        "username='" + this.username + '\'' +
+        ", password='" + this.password + '\'' +
+        '}';
+  }
 }

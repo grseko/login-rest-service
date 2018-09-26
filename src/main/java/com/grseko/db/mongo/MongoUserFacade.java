@@ -5,6 +5,9 @@ import com.grseko.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+/**
+ * Facade specific to the
+ */
 @Repository
 public class MongoUserFacade implements UserFacade {
 
