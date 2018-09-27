@@ -1,14 +1,11 @@
 package com.grseko.db.mongo;
 
 import com.grseko.db.UserFacade;
-import com.grseko.model.User;
+import com.grseko.service.User;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Repository;
+import org.springframework.stereotype.Component;
 
-/**
- * Facade specific to the
- */
-@Repository
+@Component
 public class MongoUserFacade implements UserFacade {
 
   private final MongoUserRepository userRepository;
@@ -24,15 +21,12 @@ public class MongoUserFacade implements UserFacade {
   }
 
   @Override
-  public User createUser(String username, String password) {
-    User user = new MongoUser(username, password);
-    userRepository.insert(user);
-    return user;
+  public void createUser(User user) {
+    userRepository.insert(user); // TODO Does this automatically update the ID field?
   }
 
   @Override
-  public void deleteUser(String username) {
-    User user = getUser(username);
+  public void deleteUser(User user) {
     userRepository.delete(user);
   }
 

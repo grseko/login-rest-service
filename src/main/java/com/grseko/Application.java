@@ -2,6 +2,7 @@ package com.grseko;
 
 import com.grseko.db.UserFacade;
 import com.grseko.db.mongo.MongoUserRepository;
+import com.grseko.service.User;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
@@ -13,7 +14,6 @@ import org.springframework.context.annotation.Bean;
 public class Application implements CommandLineRunner {
 
   // TODO Separate DB, business, and REST layers into separate modules entirely to prevent circular dependencies.
-  // TODO Connect the modules through services
 
   @Autowired
   private MongoUserRepository userRepository;
@@ -30,7 +30,10 @@ public class Application implements CommandLineRunner {
     userRepository.deleteAll();
 
     System.out.println("Inserting admin into database");
-    userFacade.createUser("admin", "hunter2");
+    User user = new User("admin", "hunter2");
+    System.out.println("'user' before storage: " + user);
+    userFacade.createUser(user);
+    System.out.println("'user' after storage: " + user);
 
     System.out.println("UserFacade.getUser: " + userFacade.getUser("admin"));
   }

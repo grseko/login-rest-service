@@ -1,16 +1,21 @@
-package com.grseko.model;
+package com.grseko.rest;
+
+import java.io.Serializable;
 
 /**
- * Business entity
+ * Transfer Object for {@link com.grseko.service.User}.
  */
-public class User {
+public class UserDTO implements
+    Serializable {
 
+  private String id;
   private String username;
-  private String password; // TODO Further development options - salt and hash this guy before storage!
+  private String password;
 
-  public User() {}
+  public UserDTO() {
+  }
 
-  public User(String username, String password) {
+  public UserDTO(String username, String password) {
     this.username = username;
     this.password = password;
   }
@@ -34,6 +39,8 @@ public class User {
   @Override
   public String toString() {
     return "User{" +
+        (id == null ? "" : ("id='" + id + "', ")) +
+        // TODO There's probably a library which converts POJOs into a String representation like this
         "username='" + this.username + '\'' +
         ", password='" + this.password + '\'' +
         '}';
