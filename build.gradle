@@ -1,5 +1,5 @@
 buildscript {
-    project.ext.SPRING_BOOT_VERSION = '2.0.5.RELEASE'
+    project.ext.SPRING_BOOT_VERSION = '2.0.5.RELEASE' // 2018-09-12
 
     repositories {
         mavenCentral()
@@ -24,13 +24,11 @@ repositories {
     mavenCentral()
 }
 
-sourceCompatibility = 1.8
-targetCompatibility = 1.8
-
 dependencies {
-    compile("org.springframework.boot:spring-boot-starter-web")
-    compile("org.springframework.boot:spring-boot-starter-data-mongodb")
-    compile('org.modelmapper:modelmapper:2.3.0')
-    testCompile("org.springframework.boot:spring-boot-starter-test")
-    testCompile("junit:junit")
+    compile("org.springframework.boot:spring-boot-starter-web:$SPRING_BOOT_VERSION")
+    compile("org.springframework.boot:spring-boot-starter-data-mongodb:$SPRING_BOOT_VERSION")
+    compile('org.modelmapper:modelmapper:2.3.0') // 2018-09-20
+    testCompile("org.springframework.boot:spring-boot-starter-test:$SPRING_BOOT_VERSION")
+    testCompile("org.mockito:mockito-core:2.22.0") // 2018-09-10
+    testCompile("org.junit.jupiter:junit-jupiter-api:5.3.1") // 2018-09-11
 }

@@ -1,4 +1,4 @@
-package com.grseko.service;
+package com.grseko.service.user.exceptions;
 
 public class UserAuthenticationException extends Exception {
 

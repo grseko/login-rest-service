@@ -1,9 +1,9 @@
 package com.grseko;
 
-import com.grseko.db.UserFacade;
-import com.grseko.db.mongo.MongoUserRepository;
-import com.grseko.service.User;
-import org.modelmapper.ModelMapper;
+import com.grseko.db.UserDAO;
+import com.grseko.db.model.User;
+import com.grseko.db.mongo.user.MongoUserDAO;
+import com.grseko.db.mongo.user.MongoUserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -13,35 +13,32 @@ import org.springframework.context.annotation.Bean;
 @SpringBootApplication
 public class Application implements CommandLineRunner {
 
-  // TODO Separate DB, business, and REST layers into separate modules entirely to prevent circular dependencies.
+  private UserDAO userDAO;
 
   @Autowired
-  private MongoUserRepository userRepository;
-
-  @Autowired
-  private UserFacade userFacade;
+  public Application(UserDAO userDAO) {
+    this.userDAO = userDAO;
+  }
 
   public static void main(String[] args) {
     SpringApplication.run(Application.class, args);
   }
 
+  // TODO Testing purposes
   @Override
   public void run(String... args) throws Exception {
-    userRepository.deleteAll();
+    userDAO.deleteAll();
+    System.out.println("Deleted all User entries in DB");
 
-    System.out.println("Inserting admin into database");
-    User user = new User("admin", "hunter2");
-    System.out.println("'user' before storage: " + user);
-    userFacade.createUser(user);
-    System.out.println("'user' after storage: " + user);
-
-    System.out.println("UserFacade.getUser: " + userFacade.getUser("admin"));
+    userDAO.create(new User("admin", "hunter2"));
+    System.out.println("Inserted user with username='admin' password='hunter2' into database");
   }
 
   // Beans
 
   @Bean
-  public ModelMapper modelMapper() {
-    return new ModelMapper();
+  @Autowired
+  public UserDAO userDAO(MongoUserRepository mongoUserRepository) {
+    return new MongoUserDAO(mongoUserRepository);
   }
 }

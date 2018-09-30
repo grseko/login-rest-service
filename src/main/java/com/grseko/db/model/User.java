@@ -1,16 +1,13 @@
-package com.grseko.service;
+package com.grseko.db.model;
 
 import org.springframework.data.annotation.Id;
 
-/**
- * Business entity
- */
 public class User {
 
   @Id
   private String id;
   private String username;
-  private String password; // TODO Further development options - salt and hash this guy before storage!
+  private String password; // TODO Further development options - salt and hash before storage!
 
   public User() {
   }
