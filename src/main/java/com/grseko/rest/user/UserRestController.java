@@ -2,6 +2,7 @@ package com.grseko.rest.user;
 
 import static org.springframework.web.bind.annotation.RequestMethod.POST;
 
+import com.grseko.service.user.DefaultUserService;
 import com.grseko.service.user.UserService;
 import com.grseko.service.user.exceptions.UserAlreadyExistsException;
 import com.grseko.service.user.exceptions.UserAuthenticationException;

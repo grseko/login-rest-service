@@ -20,12 +20,12 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
 
 @ExtendWith(MockitoExtension.class)
-class UserServiceTest {
+class DefaultUserServiceTest {
 
   private static final String ADMIN_PASSWORD = "adminpassword";
   private static final String ADMIN_USER = "admin";
 
-  private UserService userService;
+  private DefaultUserService defaultUserService;
   private UserDAO userDAO;
 
   @BeforeEach
@@ -33,21 +33,21 @@ class UserServiceTest {
     when(userDAO.getByUsername(ADMIN_USER)).thenReturn(new MockUser(ADMIN_USER, ADMIN_PASSWORD));
     when(userFactory.createUser(anyString(), anyString())).thenReturn(new MockUser());
 
-    this.userService = new UserService(userDAO, userFactory);
+    this.defaultUserService = new DefaultUserService(userDAO, userFactory);
     this.userDAO = userDAO;
   }
 
   @Test
   void givenValidUserWithMatchingPassword_authenticateUser_shouldReturnPersistedUser()
       throws UserAuthenticationException {
-    userService.authenticateUser(ADMIN_USER, ADMIN_PASSWORD);
+    defaultUserService.authenticateUser(ADMIN_USER, ADMIN_PASSWORD);
     verify(userDAO, times(1)).getByUsername(ADMIN_USER);
   }
 
   @Test
   void givenValidUserWithWrongPassword_authenticateUser_shouldThrowException() {
     Exception exception = assertThrows(UserAuthenticationException.class, () ->
-        userService.authenticateUser(ADMIN_USER, "wrong_password")
+        defaultUserService.authenticateUser(ADMIN_USER, "wrong_password")
     );
     assertEquals("Wrong password", exception.getMessage());
   }
@@ -55,21 +55,21 @@ class UserServiceTest {
   @Test
   void givenInvalidUser_authenticateUser_shouldThrowException() {
     Exception exception = assertThrows(UserAuthenticationException.class, () ->
-        userService.authenticateUser("bob", "bobs_password")
+        defaultUserService.authenticateUser("bob", "bobs_password")
     );
     assertEquals("Wrong username", exception.getMessage());
   }
 
   @Test
   void givenNewUser_registerUser_shouldCreateNewUser() throws UserAlreadyExistsException {
-    userService.registerUser("newbob", "newbobs_password");
+    defaultUserService.registerUser("newbob", "newbobs_password");
     verify(userDAO, times(1)).create(any(User.class));
   }
 
   @Test
   void givenExistingUser_registerUser_shouldThrowException() {
     assertThrows(UserAlreadyExistsException.class, () ->
-        userService.registerUser(ADMIN_USER, ADMIN_PASSWORD)
+        defaultUserService.registerUser(ADMIN_USER, ADMIN_PASSWORD)
     );
   }
 

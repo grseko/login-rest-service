@@ -5,6 +5,8 @@ import com.grseko.db.model.user.UserFactory;
 import com.grseko.db.mongo.user.MongoUserDAO;
 import com.grseko.db.mongo.user.MongoUserFactory;
 import com.grseko.db.mongo.user.MongoUserRepository;
+import com.grseko.service.user.DefaultUserService;
+import com.grseko.service.user.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -43,5 +45,11 @@ public class Application implements CommandLineRunner {
   @Bean
   public UserFactory userFactory() {
     return new MongoUserFactory();
+  }
+
+  @Bean
+  @Autowired
+  public UserService userService(UserDAO userDAO, UserFactory userFactory) {
+    return new DefaultUserService(userDAO, userFactory);
   }
 }

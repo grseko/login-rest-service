@@ -29,7 +29,6 @@ In the current version, it also runs a few commands to make testing easier at st
 **Gradle:** I chose Gradle mostly to keep my project XML-free. I've used it a little before and I still don't feel like I truly get it. The next step is to harness the power of Gradle tasks!
 
 ## Further Development
-* Split the `class UserService` into `interface UserService` and `class UserServiceImpl` to keep the implementation hidden from the REST layer.
 * Break off the configuration part of `Application` class into a `Configuration` class to enforce separation of concerns.
 * Configure MongoDB not use the default database.
 * Add integration tests.
