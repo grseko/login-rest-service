@@ -1,6 +1,6 @@
 package com.grseko.service.user;
 
-import com.grseko.db.model.user.User;
+import com.grseko.database.model.user.User;
 import com.grseko.service.user.exceptions.UserAlreadyExistsException;
 import com.grseko.service.user.exceptions.UserAuthenticationException;
 

@@ -1,6 +1,6 @@
-package com.grseko.db.mongo;
+package com.grseko.database.mongo;
 
-import com.grseko.db.DAO;
+import com.grseko.database.dao.DAO;
 import java.util.List;
 import java.util.Optional;
 import org.springframework.data.mongodb.repository.MongoRepository;

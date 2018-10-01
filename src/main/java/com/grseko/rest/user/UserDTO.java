@@ -1,6 +1,6 @@
 package com.grseko.rest.user;
 
-import com.grseko.db.model.user.User;
+import com.grseko.database.model.user.User;
 import java.io.Serializable;
 
 /**

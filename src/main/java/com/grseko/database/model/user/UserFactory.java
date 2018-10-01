@@ -1,4 +1,4 @@
-package com.grseko.db.model.user;
+package com.grseko.database.model.user;
 
 public interface UserFactory {
 

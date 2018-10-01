@@ -1,6 +1,6 @@
-package com.grseko.db.mongo.user;
+package com.grseko.database.mongo.user;
 
-import com.grseko.db.model.user.AbstractUser;
+import com.grseko.database.model.user.AbstractUser;
 import org.springframework.data.annotation.Id;
 
 class MongoUser extends AbstractUser<String> {

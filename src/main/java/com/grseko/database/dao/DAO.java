@@ -1,4 +1,4 @@
-package com.grseko.db;
+package com.grseko.database.dao;
 
 import java.util.List;
 import java.util.Optional;

@@ -12,7 +12,7 @@ Throughout the design, I'm trying to keep the code as modular as possible to mak
 
 **BUSINESS layer *(com.grseko.service)*** contains the business logic in `UserService`. The service doesn't know anything about the layer above it, so it doesn't use DTO objects which belong to the REST layer. It communicates with the DATABASE layer through an injected implementation of a DAO interface, so it's not aware of the specific Database implementation underneath.
  
-**DATABASE layer *(com.grseko.db)*** exposes the model/entity and a generic `UserDAO` interface, keeping specific implementations hidden. It's not aware of the layer above it in any way.  
+**DATABASE layer *(com.grseko.database)*** exposes the model/entity and a generic `UserDAO` interface, keeping specific implementations hidden. It's not aware of the layer above it in any way.  
 
 Top-level **APPLICATION layer *(com.grseko)*** is responsible for configuration, i.e. defining the Beans to specify what specific implementations should be used throughout the application.  
 In the current version, it also runs a few commands to make testing easier at startup.
@@ -29,7 +29,6 @@ In the current version, it also runs a few commands to make testing easier at st
 **Gradle:** I chose Gradle mostly to keep my project XML-free. I've used it a little before and I still don't feel like I truly get it. The next step is to harness the power of Gradle tasks!
 
 ## Further Development
-* Break off the configuration part of `Application` class into a `Configuration` class to enforce separation of concerns.
 * Configure MongoDB not use the default database.
 * Add integration tests.
 * Remove the debug commands from the `Application` class.

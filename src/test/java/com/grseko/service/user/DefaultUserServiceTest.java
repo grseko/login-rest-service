@@ -8,9 +8,9 @@ import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
-import com.grseko.db.UserDAO;
-import com.grseko.db.model.user.User;
-import com.grseko.db.model.user.UserFactory;
+import com.grseko.database.dao.UserDAO;
+import com.grseko.database.model.user.User;
+import com.grseko.database.model.user.UserFactory;
 import com.grseko.mockito.MockitoExtension;
 import com.grseko.service.user.exceptions.UserAlreadyExistsException;
 import com.grseko.service.user.exceptions.UserAuthenticationException;

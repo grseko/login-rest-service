@@ -1,4 +1,4 @@
-package com.grseko.db.model.user;
+package com.grseko.database.model.user;
 
 // TODO Singleton in Java SE?
 public abstract class AbstractUser<T> implements User<T> {

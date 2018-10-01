@@ -1,7 +1,7 @@
-package com.grseko.db.mongo.user;
+package com.grseko.database.mongo.user;
 
-import com.grseko.db.model.user.User;
-import com.grseko.db.model.user.UserFactory;
+import com.grseko.database.model.user.User;
+import com.grseko.database.model.user.UserFactory;
 
 public class MongoUserFactory implements UserFactory {
 

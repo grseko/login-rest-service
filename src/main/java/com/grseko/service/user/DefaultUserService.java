@@ -1,8 +1,8 @@
 package com.grseko.service.user;
 
-import com.grseko.db.UserDAO;
-import com.grseko.db.model.user.User;
-import com.grseko.db.model.user.UserFactory;
+import com.grseko.database.dao.UserDAO;
+import com.grseko.database.model.user.User;
+import com.grseko.database.model.user.UserFactory;
 import com.grseko.service.user.exceptions.UserAlreadyExistsException;
 import com.grseko.service.user.exceptions.UserAuthenticationException;
 import org.springframework.beans.factory.annotation.Autowired;

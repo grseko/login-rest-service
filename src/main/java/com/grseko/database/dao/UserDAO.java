@@ -1,6 +1,6 @@
-package com.grseko.db;
+package com.grseko.database.dao;
 
-import com.grseko.db.model.user.User;
+import com.grseko.database.model.user.User;
 
 public interface UserDAO extends DAO<User, String> {
 

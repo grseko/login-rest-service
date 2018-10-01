@@ -1,8 +1,8 @@
-package com.grseko.db.mongo.user;
+package com.grseko.database.mongo.user;
 
-import com.grseko.db.UserDAO;
-import com.grseko.db.model.user.User;
-import com.grseko.db.mongo.MongoDAO;
+import com.grseko.database.dao.UserDAO;
+import com.grseko.database.model.user.User;
+import com.grseko.database.mongo.MongoDAO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.stereotype.Component;
