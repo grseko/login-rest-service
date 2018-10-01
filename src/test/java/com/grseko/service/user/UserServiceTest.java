@@ -1,10 +1,16 @@
 package com.grseko.service.user;
 
-import static org.mockito.Mockito.*;
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.mockito.Mockito.any;
+import static org.mockito.Mockito.anyString;
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
 
 import com.grseko.db.UserDAO;
-import com.grseko.db.model.User;
+import com.grseko.db.model.user.User;
+import com.grseko.db.model.user.UserFactory;
 import com.grseko.mockito.MockitoExtension;
 import com.grseko.service.user.exceptions.UserAlreadyExistsException;
 import com.grseko.service.user.exceptions.UserAuthenticationException;
@@ -23,13 +29,11 @@ class UserServiceTest {
   private UserDAO userDAO;
 
   @BeforeEach
-  void init(@Mock UserDAO userDAO) {
-    User user = new User(ADMIN_USER, ADMIN_PASSWORD);
-    user.setId("adminUserId");
+  void init(@Mock UserDAO userDAO, @Mock UserFactory userFactory) {
+    when(userDAO.getByUsername(ADMIN_USER)).thenReturn(new MockUser(ADMIN_USER, ADMIN_PASSWORD));
+    when(userFactory.createUser(anyString(), anyString())).thenReturn(new MockUser());
 
-    when(userDAO.getByUsername(ADMIN_USER)).thenReturn(user);
-
-    this.userService = new UserService(userDAO);
+    this.userService = new UserService(userDAO, userFactory);
     this.userDAO = userDAO;
   }
 
@@ -55,6 +59,7 @@ class UserServiceTest {
     );
     assertEquals("Wrong username", exception.getMessage());
   }
+
   @Test
   void givenNewUser_registerUser_shouldCreateNewUser() throws UserAlreadyExistsException {
     userService.registerUser("newbob", "newbobs_password");
@@ -67,5 +72,51 @@ class UserServiceTest {
         userService.registerUser(ADMIN_USER, ADMIN_PASSWORD)
     );
   }
+
+  private class MockUser implements User<String> {
+
+    private String id;
+    private String username;
+    private String password;
+
+    MockUser() {
+    }
+
+    MockUser(String username, String password) {
+      this.username = username;
+      this.password = password;
+    }
+
+    @Override
+    public String getId() {
+      return id;
+    }
+
+    @Override
+    public void setId(String id) {
+      this.id = id;
+    }
+
+    @Override
+    public String getUsername() {
+      return username;
+    }
+
+    @Override
+    public void setUsername(String username) {
+      this.username = username;
+    }
+
+    @Override
+    public String getPassword() {
+      return password;
+    }
+
+    @Override
+    public void setPassword(String password) {
+      this.password = password;
+    }
+  }
+
 
 }

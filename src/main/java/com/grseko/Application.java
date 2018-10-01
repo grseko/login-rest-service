@@ -1,8 +1,9 @@
 package com.grseko;
 
 import com.grseko.db.UserDAO;
-import com.grseko.db.model.User;
+import com.grseko.db.model.user.UserFactory;
 import com.grseko.db.mongo.user.MongoUserDAO;
+import com.grseko.db.mongo.user.MongoUserFactory;
 import com.grseko.db.mongo.user.MongoUserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
@@ -29,9 +30,6 @@ public class Application implements CommandLineRunner {
   public void run(String... args) throws Exception {
     userDAO.deleteAll();
     System.out.println("Deleted all User entries in DB");
-
-    userDAO.create(new User("admin", "hunter2"));
-    System.out.println("Inserted user with username='admin' password='hunter2' into database");
   }
 
   // Beans
@@ -40,5 +38,10 @@ public class Application implements CommandLineRunner {
   @Autowired
   public UserDAO userDAO(MongoUserRepository mongoUserRepository) {
     return new MongoUserDAO(mongoUserRepository);
+  }
+
+  @Bean
+  public UserFactory userFactory() {
+    return new MongoUserFactory();
   }
 }

@@ -1,28 +1,17 @@
-package com.grseko.db.model;
+package com.grseko.db.model.user;
 
-import org.springframework.data.annotation.Id;
+// TODO Singleton in Java SE?
+public abstract class AbstractUser<T> implements User<T> {
 
-public class User {
-
-  @Id
-  private String id;
   private String username;
   private String password; // TODO Further development options - salt and hash before storage!
 
-  public User() {
+  public AbstractUser() {
   }
 
-  public User(String username, String password) {
+  public AbstractUser(String username, String password) {
     this.username = username;
     this.password = password;
-  }
-
-  public String getId() {
-    return id;
-  }
-
-  public void setId(String id) {
-    this.id = id;
   }
 
   public String getUsername() {
@@ -44,7 +33,7 @@ public class User {
   @Override
   public String toString() {
     return "User{" +
-        "id='" + (id == null ? "{not persisted}" : id) + '\'' +
+        "id='" + (getId() == null ? "{not persisted}" : getId()) + '\'' +
         ", username='" + username + '\'' +
         ", password='" + password + '\'' +
         '}';

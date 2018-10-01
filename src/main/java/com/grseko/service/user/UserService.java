@@ -1,7 +1,8 @@
 package com.grseko.service.user;
 
 import com.grseko.db.UserDAO;
-import com.grseko.db.model.User;
+import com.grseko.db.model.user.User;
+import com.grseko.db.model.user.UserFactory;
 import com.grseko.service.user.exceptions.UserAlreadyExistsException;
 import com.grseko.service.user.exceptions.UserAuthenticationException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,15 +15,17 @@ import org.springframework.stereotype.Service;
 public class UserService {
 
   private final UserDAO userDAO;
+  private final UserFactory userFactory;
 
   @Autowired
-  public UserService(UserDAO userDAO) {
+  public UserService(UserDAO userDAO, UserFactory userFactory) {
     this.userDAO = userDAO;
+    this.userFactory = userFactory;
   }
 
   /**
    * Verifies the {@link User user}'s username & password against the DB. Throws {@link
-   * UserAuthenticationException} if unsuccessful, otherwise nothing happens
+   * UserAuthenticationException} if unsuccessful, otherwise nothing happens.
    *
    * TODO Sessions!
    *
@@ -38,8 +41,6 @@ public class UserService {
     } else if (!user.getPassword().equals(password)) {
       throw new UserAuthenticationException("Wrong password");
     }
-
-    // TODO Further development: Create and manage sessions
   }
 
   public void registerUser(String username, String password) throws UserAlreadyExistsException {
@@ -47,7 +48,7 @@ public class UserService {
       throw new UserAlreadyExistsException();
     }
 
-    User user = new User(username, password);
+    User user = userFactory.createUser(username, password);
     userDAO.create(user);
   }
 
