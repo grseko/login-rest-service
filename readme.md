@@ -14,7 +14,6 @@ Overall, a fun project which I'll probably continue working on a little in my ow
 **BUSINESS** layer *(com.grseko.service)* contains the business logic in **UserService**. The service doesn't know anything about the layer above it, so it doesn't use DTO objects which belong to the REST layer. It communicates with the DATABASE layer through an injected implementation of a DAO interface, so it's not aware of the specific Database implementation underneath.
  
 **DATABASE** layer *(com.grseko.db)* exposes the model/entity and generic DAO interfaces, keeping specific implementations hidden. It's not aware of the layer above it in any way.  
-I'm aware of one mistake there - the **User** class should be an interface, with a **MongoUser** implementation. The BUSINESS layer should access the interface to fully abstract away the implementation.
 
 Top-level **APPLICATION** layer *(com.grseko)* is responsible for configuration, i.e. defining the Beans to specify what specific implementations should be used throughout the application.  
 In the current version, it also runs a few commands to make testing easier at startup.
