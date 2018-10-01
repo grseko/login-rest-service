@@ -33,7 +33,8 @@ In the current version, it also runs a few commands to make testing easier at st
 
 ## Further Development
 * Turn the **User** class into an interface, create a **MongoUser** implementation.
-* Breaks off the configuration part of **Application** class into a **Configuration** class to enforce separation of concerns.
+* Break off the configuration part of **Application** class into a **Configuration** class to enforce separation of concerns.
+* Configure MongoDB to not use the default database.
 * Add integration tests.
 * Remove the debug commands from the **Application** class.
 * Salt & hash the passwords as the **User** is being created (probably make it part of `User.setPassword`).
