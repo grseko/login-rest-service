@@ -5,8 +5,8 @@ A full REST service using **Java**, **Spring Boot** and **MongoDB** with separat
 This REST service was created as a programming challenge for a job application. The challenge was focused on the separation of the different layers, not on the login functionality itself. This is why we're storing the password in plaintext instead of salting and hashing it :)
 
 The entire challenge was a learning process for me - at my previous workplace, I was mostly responsible for maintenance. When I developed REST endpoints there, I was just following existing convention. Since everything was already done for me, I never had to properly wrap my head around the architecture and the decisions behind it. Deadlines pressured me into just doing my job and not going out of my way to learn what I'm working with.  
-This project pushed me to learn not just *how* REST services are built, but also *why* they're usually built in a certain way.  
-On top of that, I chose several technologies I've never used before (MongoDB, Spring Boot) and learned something new about technologies I haven't spent much time with (Gradle, Mockito).
+This project pushed me to learn not just *how* REST services are built, but also *why* they're usually built in a certain way. On top of that, I chose several technologies I've never used before (MongoDB, Spring Boot).  
+Overall, a fun project which I'll probably continue working on a little in my own time to keep my skills sharp.
 
 ## Architecture
 **REST** layer *(com.grseko.rest)* exposes two REST endpoints in **UserRestController** and is responsible for the format of the transfer object **UserDTO**. The endpoints call the BUSINESS layer after unwrapping the transfer object. Because of the simplicity of this REST service, the DTO is never directly converted into the business object.
