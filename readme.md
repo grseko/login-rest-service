@@ -33,7 +33,8 @@ In the current version, it also runs a few commands to make testing easier at st
 * Add integration tests.
 * Remove the debug commands from the `Application` class.
 * Salt & hash the passwords as the `User` is being created (probably make it part of `User.setPassword`).
-* ...and much further on, create a separate session manager module/project to keep this going?
+* Turn this into a microservice! So far, I've been designing this like it's part of a large project, changing this into a microservice would definitely mean a very different architecture!
+* ...and much further on, create a separate session manager project to keep this going?
 
 ## Copyright
 ````
